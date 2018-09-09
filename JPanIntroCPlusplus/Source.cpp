@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
-
-
+#include "MyList.h"
 
 
 
@@ -29,11 +28,8 @@ void add(int number1, int number2, int& answer);
 int main()
 {
 	//int * pointer = (int*)calloc(100000000, 4);
-
 	//system("pause");
-
 	//free(pointer);
-	
 	//int x = 5;
 
 	/*int *y = new int(10);
@@ -42,10 +38,7 @@ int main()
 
 	delete y;*/
 
-	
-
-
-#pragma region oldStuff 
+	#pragma region oldStuff 
 	/*int num = 5;
 	std::string text = "";
 
@@ -68,7 +61,7 @@ int main()
 	std::cin >> age;
 	std::cout << "Hello, my name is " + name + " and I am a " + adjective + " " + noun + ". I am " + std::to_string(age) + " years old." << std::endl;*/
 
-	int num1 = 0;
+	/*int num1 = 0;
 	int num2 = 0;
 	int value = 0;
 	char op = ' ';
@@ -163,7 +156,9 @@ int main()
 	system("PAUSE");
 	return 0;*/
 #pragma endregion	
-	int length = 0;
+
+	#pragma region oldShoppingList
+	/*int length = 0;
 	std::string* list = new std::string[length];	
 	bool running = true;
 	std::string input = "";
@@ -227,9 +222,45 @@ int main()
 		{
 			return 0;
 		}
+	}*/
+
+#pragma endregion
+
+	MyList shoppingList;
+	while (shoppingList.running)
+	{
+		string input = "";
+		std::cout << "Shopping list: \n1. Add item \n2. Remove item \n3. Show list \n4. Exit" << std::endl;
+		std::cin >> input;
+		if (input == "1")
+		{
+			std::cout << "Input an item" << std::endl;
+			std::cin >> input;
+			shoppingList.AddItem(input);
+		}
+		else if (input == "2")
+		{
+			std::cout << "Choose an item to remove" << std::endl;
+			for (int i = 1; i < shoppingList.length + 1; i++)
+			{
+				std::cout << std::to_string(i) + ". " + shoppingList.list[i - 1] << std::endl;
+			}
+			std::cin >> input;
+			shoppingList.RemoveItem(stoi(input) - 1);
+		}
+		else if (input == "3")
+		{
+			shoppingList.ShowList();
+		}
+		else if (input == "4")
+		{
+			shoppingList.Exit();
+		}
+		input = "";
 	}
-	
+	return 0;
 }
+
 
 void add(int num1, int num2, int &answer)
 	{
